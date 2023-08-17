@@ -411,3 +411,136 @@ fn main() {
     }
 }
 ```
+
+---
+
+# Ownership
+
+
+```rust
+fn main(){
+    let s: String = String::from("hello");
+    takes_ownership(s); // This function takes ownership from s
+    
+
+    let s1: String = gives_ownership(); //* This function gives ownership to s1 variable*/
+    println!("s1: {}", s1);
+    
+
+    let s2: String = String::from("There");
+    let s3: String = takes_and_gives_back(s2); //* takes ownership from s2 and gives to s3 */
+    
+    println!("{}", s3);
+}
+
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+}
+
+fn gives_ownership() -> String {
+    let some_string: String = String::from("hello");
+
+    some_string
+}
+
+fn takes_and_gives_back(a_string: String) -> String {
+    a_string
+}
+```
+
+---
+
+## References
+
+- References don't take ownership of underlying value but points to it
+- References are immutable by nature
+
+### Rules
+
+- At any given time, you can have either one mutable reference or any number of immutable references
+- References must always be valid
+
+```rust
+fn main() {
+    let s1: String = String::from("Hello");
+    let len = calculate_length(&s1);
+    println!("The length of {} is {}", s1, len);
+
+    //* modifying by taking reference */
+    let mut s2: String = String::from("Hello"); //* have to make s2 mutable to modify by reference */
+    change(&mut s2);
+
+    println!("{s2}");
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", there");
+}
+```
+
+---
+
+## References
+
+> **Note:** 
+>
+> - can only have one mutable reference to a particular piece of data in a particular scope
+>
+> - can't have multiple mutable references to the same data
+>
+> - can have multiple immutable references to the same data
+>
+> - can't have mutable reference if the immutable reference already exists
+
+```rust
+fn main() {
+    let mut s: String = String::from("hello");
+
+    let r1 = &s;
+    let r2 = &s;
+
+    // let r3 = &mut s; // can't do this because
+                     // can't have mutable reference if the immutable reference already exists
+
+    println!("{}, {}", r1, r2);
+
+    let r3 = &mut s; // can do this now as at this point r1 and r2 are out of scope
+    println!("{}", r3);
+}
+```
+
+---
+
+### Dangling Refrences
+
+```rust
+fn dangle() -> &String {
+    // dangle returns a reference to a String
+
+    let s = String::from("hello"); // s is a new String
+
+    &s // we return a reference to the String, s
+} // Here, s goes out of scope, and is dropped. Its memory goes away.
+  // Danger!
+```
+
+> Because s is created inside dangle, when the code of dangle is finished, s will be deallocated.
+> But we tried to return a reference to it. That means this reference would be pointing to an invalid String.
+
+---
+
+### slice
+
+```rust
+fn main() {
+    let a = [1, 2, 3, 4, 5, 6, 7];
+
+    let slice = &a[1..5];
+
+    println!("{}", slice[2]);
+}
+```
