@@ -185,12 +185,18 @@ let v: Vec<i32> = vec![1, 2, 3, 5, 7];
 
 ```rust
 
-fn main(){
+fn main() {
     let x: i32 = 5;
     println!("first x: {}", x);
 
     let x: i32 = 99;
     println!("second x: {}", x);
+
+    let mut x = String::from("Hello");
+
+    x.push_str(", world!");
+
+    println!("third x: {}", x);
 }
 
 ```
