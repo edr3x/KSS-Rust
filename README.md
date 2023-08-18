@@ -550,3 +550,134 @@ fn main() {
     println!("{}", slice[2]);
 }
 ```
+
+---
+
+# Struct
+
+```rust
+struct User {
+    email: String,
+    age: i8,
+    active: bool,
+}
+
+fn main(){
+    let user = User {
+        email: String::from("user@email.com"),
+        age: 23,
+        active: true,
+    };
+
+    println!("{}, {}, {}", user.email, user.age, user.active);
+}
+
+```
+
+---
+
+# Struct
+
+## Touple Struct
+
+```rust
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
+}
+
+fn main(){
+     let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!("The area of rectangle is {} square pixels", area(&rect));
+}
+
+```
+---
+
+# Struct
+
+## Method Syntax
+
+```rust
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+// implementation block houses funtions and methods associated with our struct
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+fn main(){
+     let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    let area = rect.area();
+
+    println!("The area of rectangle is {} square pixels", area);
+}
+```
+
+---
+
+# Struct
+
+## Associated Function
+
+```rust
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+impl Rectangle {
+    fn square(size: u32) -> Rectangle {
+        Rectangle {
+            width: size,
+            height: size,
+        }
+    }
+}
+
+fn main() {
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    let area = rect.area();
+
+    println!("The area fo rectangle is {} square pixels", area);
+
+    // Using associated function for Square
+    let square = Rectangle::square(45); // associated function
+
+    let area = square.area();
+
+    println!("rect4: {}", area);
+}
+
+```
+
+---
+
+
