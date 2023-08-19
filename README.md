@@ -680,4 +680,217 @@ fn main() {
 
 ---
 
+# Enums
+
+```rust
+#[derive(Debug)]
+enum IpAddrKind {
+    V4,
+    V6,
+}
+
+#[derive(Debug)]
+struct IpAddr {
+    kind: IpAddrKind,
+    address: String,
+}
+
+fn main() {
+    let home = IpAddr {
+        kind: IpAddrKind::V4,
+        address: String::from("127.0.0.1"),
+    };
+
+    println!("{:?}", home);
+}
+    
+```
+
+---
+
+# Enums
+
+```rust
+#[derive(Debug)]
+enum IpAddr {
+    V4(String),
+    V6(String),
+}
+
+fn main() {
+    let home = IpAddr::V4(String::from("127.0.0.1"));
+
+    println!("{:?}", home);
+}
+
+```
+
+---
+
+# Enums
+
+```rust
+#[derive(Debug)]
+enum IpType {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+fn main() {
+    let ip = IpType::V4(127, 0, 0, 1);
+
+    let ip2 = IpType::V6(String::from("::1"));
+
+    println!("{:?}\n", ip);
+    
+    println!("{:?}", ip2);
+}
+```
+
+---
+
+# Enums
+
+```rust
+#[derive(Debug)]
+enum IpAddr {
+    V4(String),
+    V6(String),
+}
+
+impl IpAddr {
+    fn call(&self) {
+        println!("{:?}", self);
+    }
+}
+
+fn main() {
+    let ipv4 = IpAddr::V4(String::from("127.0.0.1"));
+
+    let ipv6 = IpAddr::V6(String::from("::4"));
+
+    ipv4.call();
+
+    ipv6.call();
+}
+```
+---
+
+# Enums
+
+## Option Enum
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+```
+
+## Result Enum
+
+```rust
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+```
+
+---
+
+# Enums
+
+## Option Enum
+
+```rust
+fn main() {
+    let x: i8 = 10;
+
+    let y: Option<i8> = Some(5);
+
+    let z: i8 = x + y.unwrap_or(0);
+
+    println!("{}", z);
+    
+}
+
+
+
+```
+
+---
+
+# Match Expressions
+
+- **This is a powerful control flow construct that allows you to compare a value against a series of patterns and then execute code based on which pattern matches**
+
+```rust
+enum Engine {
+    V4,
+    V6,
+    V8,
+}
+
+fn call(engine: Engine) {
+    match engine {
+        Engine::V4 => println!("Engine V4 is running"),
+        Engine::V6 => println!("Engine V6 is running"),
+        Engine::V8 => println!("Engine V8 is running"),
+    }
+}
+
+fn main() {
+    let engine_version = Engine::V8;
+
+    call(engine_version);
+}
+
+```
+
+---
+
+## Match expressions
+
+```rust
+
+fn call(num: i32) {
+    match num {
+        4 => println!("four"),
+        8 => println!("eight"),
+        10 => println!("ten"),
+        12 => println!("twelve"),
+
+        _ => println!("not found"),
+    }
+}
+
+fn main() {
+    call(8);
+
+    call(10);
+
+    call(2);
+    
+}
+
+
+```
+
+---
+
+## `If let` syntax
+
+- If we only have to specify the pattern we care about and all other pattern are ignored
+
+```rust
+fn main() {
+    let value: Option<i32> = Some(3);
+
+    if let Some(3) = value {
+        println!("three");
+    }
+}
+```
+
+---
 
