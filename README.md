@@ -1232,7 +1232,87 @@ fn main() {
 
 ---
 
-# Lifetimes
+# Things I left
 
-- Too advanced, thus out of scope for today
+- **Lifetimes**
+- **Automated Tests**
+- **IO**
+- **Iterators**
+- **Closures**
+- **Unsafe Rust**
+- **Macros**
+- **Trait Objects**
+- **Shared State Concurrency**
+- **Smart Pointers**
+....
+
+---
+
+# Crates
+
+- repository: https://crates.io/
+
+## Popular Crates
+
+- `Serde`  : for serializing and deserializing json
+- `Chrono` : date and time library
+- `Tokio`  : for writing asynchronous I/O backed applications
+- `Tonic`  : gRPC library 
+- `SQLx`   : for compile-time checked SQL queries
+- `Reqwest`: HTTP client library
+- `Dotenvy`: Dotenv crate
+
+---
+
+# Web Servers
+
+## Backend
+
+- `actix_web`
+- `axum`
+- `rocket`
+
+## Frontend (WASM)
+
+- `Leptos` : Fullstack 
+- `Yew`
+
+---
+
+# Hello World
+
+- Simple Hello World api with `actix_web`
+
+```rust
+use actix_web::{App, HttpServer, Responder};
+
+#[actix_web::get("/")]
+async fn index() -> impl Responder {
+    "Hello, There!"
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| App::new().service(index))
+        .bind(("0.0.0.0", 8080))?
+        .run()
+        .await
+}
+```
+
+---
+
+# Dockerizing
+
+## Image size compare with node (for hello world api)
+
+```sh
+REPOSITORY         TAG       IMAGE ID       CREATED         SIZE
+test/rust-server   latest    e809506f3b86   5 minutes ago   10.6MB
+test/node-server   latest    387e20849ec0   8 minutes ago   188MB
+```
+
+- Rust server image is 18 times smaller than node
+
+---
 
