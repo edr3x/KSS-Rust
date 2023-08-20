@@ -894,3 +894,76 @@ fn main() {
 
 ---
 
+# Module System
+
+```rust
+
+mod person {
+    pub struct Person {
+        name: String,
+        age: u8,
+    }
+
+    impl Person {
+        pub fn new(name: String, age: u8) -> Self {
+            Self { name, age }
+        }
+
+        pub fn get_name(&self) -> &String {
+            &self.name
+        }
+
+        pub fn get_age(&self) -> &u8 {
+            &self.age
+        }
+    }
+}
+
+fn main() {
+    let p = person::Person::new("John".to_string(), 25);
+
+    let name = p.get_name();
+
+    let age = p.get_age();
+
+    println!("Name: {}, Age: {}", name, age);
+}
+
+```
+
+---
+
+# HashMaps
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+
+    scores.insert(String::from("Blue"), 20); // This will override the Blue key with the value 20
+
+    scores.entry(String::from("Yellow")).or_insert(30); // there isn't entry for yellow key then this inserts 30
+    
+    scores.entry(String::from("Yellow")).or_insert(40); // there is a entry already exists for key "Yellow" so this does nothing
+
+    println!("score map: {:?}\n", scores);
+
+    //Counting number of words
+    let text: &str = "Hello There!, General Kenobi!, Hello";
+    
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        
+        *count += 1; // this is deference operator
+    }
+
+    println!("text count: {:?}", map);
+}
+
+```
+
