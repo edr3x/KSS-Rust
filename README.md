@@ -1362,3 +1362,20 @@ Running 30s test @ http://127.0.0.1:5050
 Requests/sec:   5,497.01    (overall)
 Transfer/sec:      1.25MB
 ```
+
+---
+
+# Conclusion
+
+### Rust server compaired to node server
+
+- Average Latency                   : 24x less
+- Transfer per sec                  : 16x more
+- Request handeled per sec          : 30x more
+- Total requests handeled (30 sec)  : 30x more 
+
+> Note: This is just from hello world server, real world performance will differ
+
+---
+
+# Thank You
