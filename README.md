@@ -1316,3 +1316,49 @@ test/node-server   latest    387e20849ec0   8 minutes ago   188MB
 
 ---
 
+# Performance
+
+## Rust Server ( v1.70.0)
+
+### Test Params
+
+```sh
+ wrk -t8 -c500 -d30s http://127.0.0.1:8080
+```
+
+### Result
+```sh
+Running 30s test @ http://127.0.0.1:8080
+  8 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.98ms  533.73us  24.14ms   94.75%
+    Req/Sec    20.77k     1.10k   24.02k    76.96%      (per thread)
+    
+  4,962,396 requests in 30.03s, 615.23MB read
+  
+Requests/sec: 165,232.52                (overall)
+Transfer/sec:     20.49MB
+
+```
+
+# Node Server ( v20.5.0)
+
+### Test Params
+
+```sh
+ wrk -t8 -c500 -d30s http://127.0.0.1:5050
+```
+
+### Result
+```sh
+Running 30s test @ http://127.0.0.1:5050
+  8 threads and 500 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    71.77ms   63.41ms   1.99s    99.46%
+    Req/Sec   720.46    287.12     2.76k    82.20%   (per thread)
+    
+  165,207 requests in 30.05s, 37.66MB read
+  
+Requests/sec:   5,497.01    (overall)
+Transfer/sec:      1.25MB
+```
