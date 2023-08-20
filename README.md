@@ -31,6 +31,8 @@ paging: Slide %d / %d
 
 - **Performance**
 
+- **Type System**
+
 ---
 
 # Basics
