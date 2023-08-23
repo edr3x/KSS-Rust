@@ -1220,7 +1220,7 @@ fn main() {
 
     let p3 = p1.mixup(p2);
 
-    println!("p3.x ={},\np3.y = {} ", p3.x, p3.y); // here we get value of x from p1 and y from p2
+    println!("p3.x = {},\np3.y = {} ", p3.x, p3.y); // here we get value of x from p1 and y from p2
 }
 ```
 
@@ -1377,6 +1377,14 @@ Transfer/sec:      1.25MB
 - Total requests handeled (30 sec)  : 30x more 
 
 > Note: This is just from hello world server, real world performance will differ
+
+---
+
+
+# References
+
+## [RUST Book](https://doc.rust-lang.org/book/ch01-01-installation.html)
+## [RUST By Example](https://doc.rust-lang.org/rust-by-example/index.html)
 
 ---
 
